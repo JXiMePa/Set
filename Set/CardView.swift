@@ -11,6 +11,10 @@ import UIKit
 @IBDesignable
 class CardView: UIView {
     
+    @IBInspectable var romb: Bool = true { didSet  { setNeedsDisplay()
+        rombDrow() } }
+//   var  circle = false { didSet  { setNeedsDisplay() }
+//   var square = false { didSet  { setNeedsDisplay(); setNeedsLayout() } }
     
 
     override func draw(_ rect: CGRect) {
@@ -19,13 +23,12 @@ class CardView: UIView {
         rectColor.setFill()
         roundRect.fill()
         roundRect.addClip()
-        
-        
-        
-       rombDrow()
-    }
+
+        rombDrow()
+            }
    
-   private func rombDrow() {
+    func rombDrow() {
+        if romb {
         let centr = CGPoint(
             x: self.bounds.width / 2,
             y: self.bounds.height / 2)
@@ -43,8 +46,10 @@ class CardView: UIView {
         romb.lineWidth = 3
         romb.stroke()
         romb.fill()
-    
+     }
     }
+    
+    
    private struct Property {
     static let cornerRadius: CGFloat = 10
     }
