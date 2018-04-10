@@ -10,19 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let deck = PlayingCardDeck()
+    let deck = SetGame()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        for _ in 1...10 {
-            if let card = deck.drow() {
-                print("карта -  \(card)")
-            }
-        }
-        
-        print(deck.cards.count)
+
     }
 
 }

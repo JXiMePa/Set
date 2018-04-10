@@ -8,17 +8,17 @@
 
 import Foundation
 
-class PlayingCardDeck {
+class CardDeck {
 
     
  private(set) var cards = [PlayingCard]()
 
 init () {
     for form in PlayingCard.FormCard.all {
-        for count in PlayingCard.countElements {
+        for number in PlayingCard.Number.all {
             for color in PlayingCard.ColorCard.all {
                 for state in PlayingCard.State.all {
-                    cards.append(PlayingCard(colorCard: color, form: form, fill: state))
+                    cards.append(PlayingCard(colorCard: color, form: form, number: number, fill: state, isMatched: false))
                 }
             }
         }

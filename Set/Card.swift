@@ -13,8 +13,16 @@ struct PlayingCard {
     
     var colorCard: ColorCard
     var form: FormCard
-    static var countElements = [1, 2, 3]
+    var number: Number
     var fill: State
+    var isMatched = false
+    
+    enum Number: Int {
+        case one = 1
+        case two
+        case three
+        static let all = [Number.one, .two, .three]
+    }
     
     enum ColorCard: String {
         case redColor = "#colorLiteral(red: 1, green: 0, blue: 0, alpha: 1)"

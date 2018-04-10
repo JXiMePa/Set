@@ -11,11 +11,17 @@ import UIKit
 @IBDesignable
 class CardView: UIView {
     
-var deck = PlayingCardDeck()
     
-    
-    
+
     override func draw(_ rect: CGRect) {
+        let roundRect = UIBezierPath(roundedRect: bounds, cornerRadius: CardView.Property.cornerRadius)
+        let rectColor = #colorLiteral(red: 0.8601284898, green: 0.8601284898, blue: 0.8601284898, alpha: 1)
+        rectColor.setFill()
+        roundRect.fill()
+        roundRect.addClip()
+        
+        
+        
        rombDrow()
     }
    
@@ -23,13 +29,6 @@ var deck = PlayingCardDeck()
         let centr = CGPoint(
             x: self.bounds.width / 2,
             y: self.bounds.height / 2)
-        
-    let roundRect = UIBezierPath(roundedRect: bounds, cornerRadius: CardView.Property.cornerRadius)
-    let rectColor = #colorLiteral(red: 0.8601284898, green: 0.8601284898, blue: 0.8601284898, alpha: 1)
-    rectColor.setFill()
-    roundRect.fill()
-    roundRect.addClip()
-    
     
         let romb = UIBezierPath()
         romb.move(to: centr.offsetBy(dx: -(self.bounds.width / 3), by: 0.0))
@@ -47,7 +46,7 @@ var deck = PlayingCardDeck()
     
     }
    private struct Property {
-    static let cornerRadius: CGFloat = 20
+    static let cornerRadius: CGFloat = 10
     }
 }
 extension CGPoint {
