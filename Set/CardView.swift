@@ -9,12 +9,12 @@
 import UIKit
 
 @IBDesignable
-class CardView: UIView {
+class CardView: UIView { //MARC: Add gesture, 3 SymbolCard,
     
-    @IBInspectable var romb: Bool = true { didSet  { setNeedsDisplay()
-        rombDrow() } }
-//   var  circle = false { didSet  { setNeedsDisplay() }
-//   var square = false { didSet  { setNeedsDisplay(); setNeedsLayout() } }
+    lazy var colorCard = UIColor(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: fill)
+    var form = "romb"
+    var number = 1
+    var fill:CGFloat = 0.5
     
 
     override func draw(_ rect: CGRect) {
@@ -28,7 +28,7 @@ class CardView: UIView {
             }
    
     func rombDrow() {
-        if romb {
+        
         let centr = CGPoint(
             x: self.bounds.width / 2,
             y: self.bounds.height / 2)
@@ -39,14 +39,12 @@ class CardView: UIView {
         romb.addLine(to: centr.offsetBy(dx: self.bounds.width / 3, by: 0.0))
         romb.addLine(to: centr.offsetBy(dx: 0.0, by: self.bounds.height / 2))
         romb.close()
-        let color = #colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1)
-        let fillColor = #colorLiteral(red: 0.2644325127, green: 0.01481595335, blue: 0.8512745049, alpha: 0.4954783818)
-        fillColor.setFill()
-        color.setStroke()
+        
+        colorCard.setFill()
+        colorCard.setStroke()
         romb.lineWidth = 3
         romb.stroke()
         romb.fill()
-     }
     }
     
     

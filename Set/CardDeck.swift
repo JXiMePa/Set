@@ -9,21 +9,24 @@
 import Foundation
 
 class CardDeck {
+    
+    
+    private(set) var cards = [PlayingCard]()
+    private static var identifierFactory = 0 //MARK: problematically...
 
     
- private(set) var cards = [PlayingCard]()
-
-init () {
-    for form in PlayingCard.FormCard.all {
-        for number in PlayingCard.Number.all {
-            for color in PlayingCard.ColorCard.all {
-                for state in PlayingCard.State.all {
-                    cards.append(PlayingCard(colorCard: color, form: form, number: number, fill: state, isMatched: false))
+    init () {
+        for color in PlayingCard.ColorCard.all {
+            for number in PlayingCard.Number.all {
+                for symbol in PlayingCard.SymbolCard.all {
+                    for fill in PlayingCard.Fill.all {
+                        CardDeck.identifierFactory += 1
+                        cards.append(PlayingCard(color: color, symbol: symbol, number: number, fill: fill, indentifer: CardDeck.identifierFactory))
+                    }
                 }
             }
         }
     }
-}
     
     func drow() -> PlayingCard? {
         if cards.count > 0 {
@@ -32,6 +35,11 @@ init () {
             return nil
         }
     }
+//    private static func getUniqueIdentifier() -> Int {
+//        identifierFactory += 1
+//        return identifierFactory
+//    }
+    
 }
 extension Int {
     var arc4random: Int {
