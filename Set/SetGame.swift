@@ -13,7 +13,7 @@ class SetGame {
     private var mathingCount = 0
     private var deck = CardDeck()
     private(set) var cardsOnDisplay = [PlayingCard]()
-    private(set) var selectedCard = [PlayingCard]()
+    private(set) var selectedCard = Array<PlayingCard>()
     
     init() {
         
@@ -25,12 +25,17 @@ class SetGame {
     }
     
     func selectAndMathingCardAt(index: Int) {
-        if selectedCard.count < 3 {
-            let selected = cardsOnDisplay.remove(at: index)
-            selectedCard.append(selected)
-            
-            if selectedCard.count == 3 {
-                // after add
+        
+        
+        let selected = cardsOnDisplay.remove(at: index)
+        selectedCard.append(selected)
+        
+        print(selectedCard)
+        print(cardsOnDisplay)
+        
+        if selectedCard.count <= 3 {
+            if selectedCard.count == 3 { // set 1 line use ","?
+                
                 // if .color ==
                 if  selectedCard[0].color == selectedCard[1].color &&
                     selectedCard[1].color  == selectedCard[2].color {
@@ -67,15 +72,15 @@ class SetGame {
                         selectedCard[1].fill != selectedCard[2].fill {
                     mathingCount += 1
                 }
-                if mathingCount >= 3 { //MARK: remove selectedCard
-                    selectedCard.removeAll()
+                if mathingCount == 3 && selectedCard.count == 3 { //MARK: remove selectedCard
                     mathingCount = 0
-                } else {
-                    cardsOnDisplay += selectedCard
                     selectedCard.removeAll()
-                }
+                } else if selectedCard.count == 3 {
+                    cardsOnDisplay += selectedCard }
+                
+                
             } // mathingCount == 3
-        } // if == 3
+        } // if select <= 3
         
         //MARK://///// Enter if mathingCount == 3 ???
         

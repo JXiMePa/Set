@@ -24,9 +24,7 @@ class SetViewController: UIViewController {
             }
         }
     }
-//    case full
-//    case half
-//    case not
+    
     private func setButtonColor(card: PlayingCard) -> UIColor {
         
         if card.color.rawValue == "red" {
@@ -46,7 +44,7 @@ class SetViewController: UIViewController {
         } else { return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0) }
         return #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
     }
- 
+    
     private func setButtonSymbol(card: PlayingCard) -> String { //MARK: Fix Add UIbeziePatch?
         
         if card.symbol.rawValue == "romb" {
@@ -70,10 +68,21 @@ class SetViewController: UIViewController {
     
     
     @IBAction func choseButton(_ sender: UIButton) {
+        
+        if deck.selectedCard.count < 3 {
+            sender.layer.borderWidth = 3.0
+            sender.layer.borderColor = UIColor.blue.cgColor
+            sender.layer.cornerRadius = 8.0
+            
+            if let cardNumber = cardButtons.index(of: sender) {
+                print(cardNumber)
+              deck.selectAndMathingCardAt(index: cardNumber)
+            }
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(deck.cardsOnDisplay)
         updateViewFromModel()
     }
 }
