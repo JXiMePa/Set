@@ -10,18 +10,44 @@ import UIKit
 
 class SetViewController: UIViewController {
     
-    let deck = SetGame()
+    private var deck = SetGame()
+    
+    @IBAction func newGameButton(_ sender: UIButton) {
+            deck = SetGame()
+            updateViewFromModel()
+    }
+    
+    @IBAction func setThreCard(_ sender: UIButton) {
+        if deck.drowThreeCards() {
+            updateViewFromModel()
+        }
+    }
     
     @IBOutlet var cardButtons: [UIButton]!
     
     private func updateViewFromModel() {
+        
         if cardButtons != nil {
-            for index in cardButtons.indices {
+            ///!
+            for index in deck.cardsOnDisplay.indices {
                 let card = deck.cardsOnDisplay[index]
                 let button = cardButtons[index]
                 button.backgroundColor = setButtonColor(card: card)
-                button.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 button.setTitle(setButtonSymbol(card: card), for: .normal)
+                button.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6000000238)
+                
+                if deck.selectedCard.contains(card) {
+                    button.layer.borderWidth = 3.0
+                    button.layer.borderColor = UIColor.blue.cgColor
+                    button.layer.cornerRadius = 8.0
+                } else {
+                    button.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.6000000238)
+                }
+               for index in deck.cardsOnDisplay.count..<cardButtons.count {
+                cardButtons[index].backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
+                cardButtons[index].setTitle(nil, for: .normal)
+                
+                }
             }
         }
     }
@@ -66,8 +92,6 @@ class SetViewController: UIViewController {
         return ""
     }
     
-    
-    
     @IBAction func choseButton(_ sender: UIButton) {
         
         if deck.selectedCard.count <= 3 {
@@ -78,15 +102,19 @@ class SetViewController: UIViewController {
             if let numberButton = cardButtons.index(of: sender) {
                 print("cardNumber = \(numberButton)")
                 deck.selectCardAt(index: numberButton)
+                updateViewFromModel()
             }
-        } else {
-            ////////// ENTER ....
+        }
+        
+        if deck.selectedCard.count == 3 {
+            updateViewFromModel()
         }
         
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         updateViewFromModel()
+        print(cardButtons.count)
     }
 }
 

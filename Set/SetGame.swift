@@ -11,7 +11,8 @@ import Foundation
 class SetGame {
     
     private var deck = CardDeck()
-    private var MATCH = 3
+    private var MATCH = 4
+    private(set) var cardCount = CardDeck.identifierFactory
     private(set) var cardsOnDisplay = [PlayingCard]()
     private(set) var selectedCard = [PlayingCard]()
     
@@ -91,21 +92,24 @@ class SetGame {
                     }
                 }
             }
-            drowThreeCards()
+            //drowThreeCards()
         }
          selectedCard.removeAll()
-         MATCH = 3
+         MATCH = 4
     }
     
-    func drowThreeCards() {
+    func drowThreeCards() -> Bool {
         print("drowThreeCards()")
-        if cardsOnDisplay.count <= 21 {
+        if cardsOnDisplay.count <= 25 {
             for _ in 1...3 {
                 if let card = deck.drow() {
                     cardsOnDisplay.append(card)
                 }
             }
+            return true
         }
+        return false
     }
+    
 }
 

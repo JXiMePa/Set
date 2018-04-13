@@ -73,3 +73,8 @@ struct PlayingCard {
 extension PlayingCard: CustomStringConvertible {
         var description: String { return "- \(number), \(symbol), \(color), \(fill), \(indentifer) \n" }
 }
+extension PlayingCard: Equatable {
+    static func ==(lhs: PlayingCard, rhs: PlayingCard) -> Bool {
+        return lhs.indentifer == rhs.indentifer
+    }
+}

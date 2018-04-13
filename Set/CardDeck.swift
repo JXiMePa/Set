@@ -12,7 +12,7 @@ class CardDeck {
     
     
     private(set) var cards = [PlayingCard]()
-    private static var identifierFactory = 0 //MARK: problematically...
+    static var identifierFactory = 0 //MARK: problematically...
 
     
     init () {
