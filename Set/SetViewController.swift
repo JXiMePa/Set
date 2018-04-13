@@ -20,6 +20,7 @@ class SetViewController: UIViewController {
                 let card = deck.cardsOnDisplay[index]
                 let button = cardButtons[index]
                 button.backgroundColor = setButtonColor(card: card)
+                button.layer.borderColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 button.setTitle(setButtonSymbol(card: card), for: .normal)
             }
         }
@@ -69,15 +70,17 @@ class SetViewController: UIViewController {
     
     @IBAction func choseButton(_ sender: UIButton) {
         
-        if deck.selectedCard.count < 3 {
+        if deck.selectedCard.count <= 3 {
+            print("selectedCard.count \(deck.selectedCard.count)")
             sender.layer.borderWidth = 3.0
             sender.layer.borderColor = UIColor.blue.cgColor
             sender.layer.cornerRadius = 8.0
-            
-            if let cardNumber = cardButtons.index(of: sender) {
-                print(cardNumber)
-              deck.selectAndMathingCardAt(index: cardNumber)
+            if let numberButton = cardButtons.index(of: sender) {
+                print("cardNumber = \(numberButton)")
+                deck.selectCardAt(index: numberButton)
             }
+        } else {
+            ////////// ENTER ....
         }
         
     }

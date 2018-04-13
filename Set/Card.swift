@@ -9,10 +9,7 @@
 import Foundation
 import UIKit
 
-struct PlayingCard: CustomStringConvertible {
-    
-    var description: String { return "- \(number), \(symbol), \(color), \(fill), \(indentifer) \n" }
-    
+struct PlayingCard {
     
     var color: ColorCard
     var symbol: SymbolCard
@@ -72,4 +69,7 @@ struct PlayingCard: CustomStringConvertible {
 //        self.fill = fill
 //        self.indentifer = PlayingCard.getUniqueIdentifier()
 //    }
+}
+extension PlayingCard: CustomStringConvertible {
+        var description: String { return "- \(number), \(symbol), \(color), \(fill), \(indentifer) \n" }
 }
