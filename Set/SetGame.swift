@@ -26,7 +26,6 @@ class SetGame {
     
     func selectCardAt(index: Int) { //MARK: Create selectedCard
         print("selectCardAt(index: \(index))")
-        print(cardsOnDisplay[index])
         if selectedCard.count < 3 { // <3!
             selectedCard.append(cardsOnDisplay[index])
         print("selectedCard.count \(selectedCard.count)")
